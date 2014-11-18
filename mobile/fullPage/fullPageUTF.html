@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!--STATUS OK-->
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
+    <meta name="format-detection" content="telephone=no" searchtype="map">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>   
+
+	<link rel="apple-touch-icon" sizes="57x57" href="" />
+	<link rel="apple-touch-icon" sizes="72x72" href="" />
+	<link data-logo="" rel="apple-touch-icon" sizes="114x114" href="" />  
+
+    <link rel="apple-touch-icon-precomposed" href=""/>
+
+	<style  type="text/css">
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0}div{-webkit-tap-highlight-color:rgba(0,0,0,0)}input{outline:0;font-size:14px}html,body,form,fieldset,p,div,h1,h2,h3,h4,h5,h6{-webkit-text-size-adjust:none}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}a,input,select,button{font-family:'Microsoft YaHei',arial,helvetica,sans-serif}a{text-decoration:none; color:#1a1a1a}body{font:14px/1.6 'Microsoft YaHei',arial,helvetica,sans-serif;-webkit-text-size-adjust:none;-webkit-user-select:none;font-size:14px; background:#F2F2F2}ol,ul{list-style:none}blockquote,q{quotes:none}img,table{border:0}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}ins{text-decoration:none}del{text-decoration:line-through}select{ background:#fff;}table{border-collapse:collapse;border-spacing:0}.clearfix:after{content:'\0020';display:block;height:0;clear:both}.clearfix{*zoom:1}.fr{ float:right}.fl{ float:left}
+button,input[type="button"],input[type="reset"],input[type="submit"] {cursor:pointer;-moz-appearance:none;-webkit-appearance : none ;}
+button::-moz-focus-inner,input::-moz-focus-inner { padding:0; border:0}
+body{overflow:hidden; background:#f9f9f9; }
+
+/* slider CSS */
+.page{position:absolute;left:0;top:0;width:100%;height:100%;z-index:9;}
+.page.active{z-index:40;}
+.hide{display:none;}
+.show{display:block;}
+
+.txt_w{ color:#fff}
+.txt_b{ color:#1a1a1a}
+strong{ font-weight:600}
+
+/* 上下提示 */
+.j_next{clear:both;position:absolute;left:50%;width:120px;margin-left:-60px;height:30px; text-align:center;line-height:30px; cursor:pointer; z-index:200; text-align:center; text-shadow:0 0 4px #333; color:#fff}
+.j_next{bottom:30px;}
+.arr_down_icon{margin: 0 auto; background:url(down_icon.png) no-repeat center top;width:50px;height:50px; background-size:50px auto; display:block;-webkit-animation:'down_animation' 1.4s linear infinite alternate; padding-top:10px}
+@-webkit-keyframes down_animation{
+0%{opacity:0;-webkit-transform:translateY(0)}
+100%{opacity:1;-webkit-transform:translateY(8px)}
+}
+
+.arr_up_icon{background:url(http://dev.dp.sina.cn/jinglei/sina_wap/images/up_ico.png) no-repeat center top; background-size:22px auto; display:inline-block;-webkit-animation:'up_animation' 1.4s linear infinite alternate; padding-top:10px}
+@-webkit-keyframes up_animation{
+0%{opacity:0;-webkit-transform:translateY(0)}
+100%{opacity:1;-webkit-transform:translateY(8px)}
+}
+
+/* 主图 */
+.bg_w{ background:#fff}
+.bg_b{ background:#000}
+.bg_1{background-size:cover;-moz-background-size:cover; background-image: url(http://i0.sinaimg.cn/dy/2014/1118/U11314P1DT20141118093631.jpg); background-position: top center;}
+.bg_2{background-size:cover;-moz-background-size:cover; background-image: url(http://i0.sinaimg.cn/dy/2014/1118/U11314P1DT20141118093631.jpg); background-position: top center;}
+.bg_3{background-size:cover;-moz-background-size:cover; background-image: url(http://i2.sinaimg.cn/cj/imgtable/idx/2014/1111/U11224P31T88D31771F2012DT20141111193552.jpg); background-position: top center;}
+.bg_4{background-size:cover;-moz-background-size:cover; background-image: url(http://i0.sinaimg.cn/cj/pc/2014-11-07/32/U11224P31T32D118660F651DT20141111202550.jpg); background-position: top center;}
+.bg_5{background-size:cover;-moz-background-size:cover; background-image: url(http://i3.sinaimg.cn/cj/imgtable/idx/2014/1111/U11224P31T88D31771F2013DT20141111193552.jpg); background-position: top center;}
+.bg_6{background-size:cover;-moz-background-size:cover; background-image: url(http://i0.sinaimg.cn/cj/pc/2014-11-07/32/U11224P31T32D118660F651DT20141111211158.jpg); background-position: top center;}
+.bg_7{background-size:cover;-moz-background-size:cover; background-image: url(5s.jpg); background-position: top center;}
+
+/* 返回 */
+.back_tips{ position:absolute; left:0; top:25px; z-index:999; height:40px; line-height:40px; background:rgba(0,0,0,.4); color:#fff; font-size:16px;}
+.back_tips span{ position:relative; display:inline-block; padding:0 12px 0 28px; cursor:pointer}
+.back_tips span:after{content: ''; position: absolute;width:12px;height: 12px;border-left: 1px solid #fff;border-bottom: 1px solid #fff;-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg); left:12px; top:14px}
+
+/* 文字 */
+.txt_l,.txt_m,.txt_r{width: 220px;position: absolute;top:50%;}
+.txt_l{left:0}
+.txt_r{right:0}
+.txt_m{left:50%;margin-left: -110px;}
+
+.txt_num{ clear:both; font-size:14px; text-align:right;padding-left: 5px; position: relative;float: left;}
+.txt_num span{ display:inline-block; position:relative;color: #fff; font-family:Helvetica,Arial,sans-serif}
+.txt_num span:after{content: ''; position: absolute; right:-36px; bottom:7px;z-index:200; width:60px; height:1px; background:#c20000;
+-webkit-transform: rotate(-45deg);-moz-transform: rotate(-45deg); 
+}
+.txt_p{
+    font-size: 14px;
+    line-height: 20px;
+    float: left;
+    color: #FFF;
+    width: 150px;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+
+
+/*文字动画*/
+.page .txt_bg{
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 1; 
+  -webkit-animation: txtBgAnim 2s linear;
+}
+@-webkit-keyframes txtBgAnim{
+    0%{ opacity: 0;}
+    40%{ opacity: 0;}
+    100%{ opacity: 1;}
+}
+.active .txt_bg,.hide .txt_bg{
+    display: none!important;
+}
+
+
+.txt_cont_bottom{ position:absolute; right:20px;bottom:60px; z-index:200; text-align:right;-webkit-box-sizing:border-box;box-sizing:border-box; padding:0 22px 0 30px; line-height:1.6;-webkit-animation:opacityIn 1s .2s ease both;}
+.txt_cont_bottom:before{content: ''; position: absolute; right:0; top:4px; bottom:6px; z-index:200; width:2px; background:#fff}
+
+@-webkit-keyframes opacityIn
+{
+0%{opacity:0}
+100%{opacity:1}
+}
+
+.t_h2{ font-size:36px; font-weight:normal; line-height:1.2; padding-bottom:8px;text-shadow:1px 1px 2px #333;}
+
+
+.t_h22{ font-size:36px; font-weight:normal; line-height:1.2; padding-bottom:8px;}
+.txt_p2{ padding:4px 0;}
+
+.bg_w .t_h2{text-shadow: none}
+
+
+.txt_summary{ clear:both; padding:40px 40px 20px ; text-align:center;-webkit-animation:opacityIn 1s .2s ease both;}
+.tips_area{ clear:both; padding:10px 0 ; text-align:center; font-size:17px;-webkit-animation:opacityIn 1s .6s ease both;}
+.tips_area_btn{ display:inline-block; width:158px; height:40px; line-height:40px; font-size:16px; text-align:center; background:#3990e6; color:#fff; border-radius:4px; margin-bottom:10px}
+
+.logo_area{ clear:both; text-align:center; padding:10px 0;-webkit-animation:logo_an 1s 1s ease both;}
+.logo_area_index{ -webkit-animation:logo_an 1s 1s ease both; position:absolute; left:0; right:0; bottom:40px; text-align:center}
+
+@-webkit-keyframes logo_an{
+0%{opacity:0;-webkit-transform:scale(.1)}
+100%{opacity:1;-webkit-transform:scale(1)}
+}
+
+/* 4:3图片类型 */
+.pic_cont{ clear:both;}
+.pic_cont img{ width:100%}
+.pic_txt_cont{ padding:15px 22px;-webkit-animation:opacityIn 1s .2s ease both;}
+
+.index_baner_tips{ position:absolute; right:10px; top:10px; z-index:200;-webkit-animation:rotateIn 1s .2s ease both;}
+
+@-webkit-keyframes rotateIn{
+0%{-webkit-transform-origin:center center;
+-webkit-transform:rotate(-200deg);
+opacity:0}
+100%{-webkit-transform-origin:center center;
+-webkit-transform:rotate(0);
+opacity:1}
+}
+.index_info{ position:absolute; right:10px; bottom:90px;-webkit-animation:fade_in_right 1s .6s ease both;}
+
+@-webkit-keyframes fade_in_right{
+0%{opacity:0;
+-webkit-transform:translateX(20px)}
+100%{opacity:1;
+-webkit-transform:translateX(0)}
+}
+
+</style>
+
+    <title>王石万科旧将又走了一个……</title>
+</head>
+<body>
+
+	<!-- 翻页button -->
+	<div class="j_next"><span class="arr_down_icon "></span></div>
+
+
+	<div id="j_slider" class="main">
+
+		<section class="page bg_1">
+                    <div class="txt_bg">
+                    <div class="txt_l">
+                    <div class="txt_num"><span>1956</span></div>
+                    <p class="txt_p">习大大说，瀛台建于明朝，
+                        在清朝是皇帝批文、避暑和
+                        宴客的地方。清朝的康熙皇
+                        帝曾经在这里研究制定平定
+                        内乱、收复台湾的国家方略。</p>
+                    </div>
+                    </div>
+		</section>
+
+		<section class="page bg_2 hide">
+                    <div class="txt_bg">
+                    <div class="txt_m">
+                    <div class="txt_num"><span>1956</span></div>
+                    <p class="txt_p">习大大说，瀛台建于明朝，
+                        在清朝是皇帝批文、避暑和
+                        宴客的地方。清朝的康熙皇
+                        帝曾经在这里研究制定平定
+                        内乱、收复台湾的国家方略。</p>
+                    </div>
+                     </div>
+		</section>
+
+	
+
+		<section class="page bg_3 hide">
+                     <div class="txt_bg">
+                    <div class="txt_r">
+                    <div class="txt_num"><span>1956</span></div>
+                    <p class="txt_p">习大大说，瀛台建于明朝，
+                        在清朝是皇帝批文、避暑和
+                        宴客的地方。清朝的康熙皇
+                        帝曾经在这里研究制定平定
+                        内乱、收复台湾的国家方略。</p>
+                    </div>
+                    </div>     
+		</section>
+
+
+		<section class="page bg_4 hide">
+
+		</section>
+
+
+
+<section class="page bg_5 hide">
+
+		</section>
+
+
+
+		<section class="page bg_7 hide">
+
+		</section>
+
+   	
+
+	</div>
+
+	<script src="zepto.js
+"></script>
+	<script src="main.js"></script>
+
+</body>
+</html>
+
