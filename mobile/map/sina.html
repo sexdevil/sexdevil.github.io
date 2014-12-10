@@ -8,7 +8,7 @@ and open the template in the editor.
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
-       <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport"/>
+       <meta content="width=640, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport"/>
       
         <style>
             html,body,div{
@@ -17,20 +17,24 @@ and open the template in the editor.
             html,body{
                 width: 100%;
                 height: 100%;
+                position: relative;
                 overflow: hidden;
             }
             #contain,#svgTheater{
                 position: relative;
                 transform-origin: 0% 0%;
+                -webkit-transform-origin: 0% 0%;
                 left:0px;
                 width: 1000px;
                 height: 1000px;
-                transform: scale(0.6);
+                transform: scale(0.5);
+                -webkit-transform: scale(0.5);  
             }
             
             @media screen and (min-width: 360px) {
                 #contain,#svgTheater{
-                    transform: scale(0.7);                 
+                    transform: scale(0.7);       
+                    -webkit-transform: scale(0.7);  
             }
             }
         </style>
