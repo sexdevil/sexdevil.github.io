@@ -59,16 +59,17 @@
               lineAry[i].height = lineAry[i].height * scaleRate
               left+=lineAry[i].width;
               if(!!lineAry[i+1]){
-                lineAry[i+1].leftPx=left+4;  
+                left = left+4
+                lineAry[i+1].leftPx=left;  
               }
 
            }
            
-           for(var i=0;i<lineAry.length;i++){
-            
+           for(var i=0;i<lineAry.length-1;i++){
                lineAry[i].div.style.left=lineAry[i].leftPx+"px";
                lineAry[i].div.style.top = this.topPx +'px';
            }
+           lineAry[lineAry.length-1].div.style.right='0px';
            this.topPx  =this.topPx +(lineAry[0].height+20);
            
         }
