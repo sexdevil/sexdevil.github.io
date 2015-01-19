@@ -39,7 +39,7 @@
         this.topPx = 0;
         for(var i=0;i<this.domAry.length;i++){
             lineWidth+=(this.domAry[i].width+4);
-            if(lineWidth>=this.standardWidth && i-startIndex>=3){
+            if(lineWidth>=this.standardWidth && i-startIndex>=2){
                 this.resizeLine(this.domAry.slice(startIndex,i),lineWidth-this.domAry[i].width);                              
                 lineWidth = this.domAry[i].width;
                 startIndex = i;
