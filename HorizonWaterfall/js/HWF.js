@@ -38,7 +38,7 @@
         var startIndex=0;
         this.topPx = 0;
         for(var i=0;i<this.domAry.length;i++){
-            lineWidth+=(this.domAry[i].width+10);
+            lineWidth+=(this.domAry[i].width+4);
             if(lineWidth>=this.standardWidth && i-startIndex>=3){
                 this.resizeLine(this.domAry.slice(startIndex,i),lineWidth-this.domAry[i].width);                              
                 lineWidth = this.domAry[i].width;
@@ -65,12 +65,10 @@
 
            }
            
-           for(var i=0;i<lineAry.length-1;i++){
+           for(var i=0;i<lineAry.length;i++){
                lineAry[i].div.style.left=lineAry[i].leftPx+"px";
                lineAry[i].div.style.top = this.topPx +'px';
            }
-           lineAry[lineAry.length-1].div.style.top = this.topPx +'px';
-           lineAry[lineAry.length-1].div.style.right='0px';
            this.topPx  =this.topPx +(lineAry[0].height+20);
            
         }
