@@ -69,6 +69,7 @@
                lineAry[i].div.style.left=lineAry[i].leftPx+"px";
                lineAry[i].div.style.top = this.topPx +'px';
            }
+           lineAry[lineAry.length-1].div.style.top = this.topPx +'px';
            lineAry[lineAry.length-1].div.style.right='0px';
            this.topPx  =this.topPx +(lineAry[0].height+20);
            
