@@ -46,7 +46,7 @@
             }
         }
         if(startIndex!=this.domAry.length){
-          console.log(startIndex)
+         // console.log(startIndex)
           this.resizeLine(this.domAry.slice(startIndex,this.domAry.length),this.standardWidth);  
         }
         
