@@ -9,14 +9,14 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" href="./tutorial.css" type="text/css">
-        <script src="../../assets/three.min.js"></script>
+        <link rel="stylesheet" href="style/index.css" type="text/css">
+        <script src="lib/threejs.js"></script>
     </head>
     <body>
          <div id="threePlayer"></div>
 
   <script>
-  var width = 900, height = 600;
+  var width = window.innerWidth, height = window.innerHeight;
   var renderer, scene, camera;
 
   var cubeMesh;
@@ -29,7 +29,7 @@ and open the template in the editor.
     renderer.setClearColor(0xbbbbbb, 1);
 
     // 设置画布大小
-    renderer.setSize(900, 600);
+    renderer.setSize(width, height);
 
     // 渲染场景与dom元素绑定
     document.getElementById('threePlayer').appendChild(renderer.domElement);
@@ -40,7 +40,7 @@ and open the template in the editor.
 
 
     // 创建一个透视镜头
-    camera= new THREE.PerspectiveCamera(45, 900 / 600, 1, 100);
+    camera= new THREE.PerspectiveCamera(45, width / height, 1, 100);
     camera.position.set(0, 0, 10);
     camera.lookAt(scene.position);
     scene.add(camera);
