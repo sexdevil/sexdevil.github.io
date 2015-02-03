@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="./tutorial.css" type="text/css">
+        <script src="../../assets/three.min.js"></script>
+    </head>
+    <body>
+         <div id="threePlayer"></div>
+
+  <script>
+  var width = 900, height = 600;
+  var renderer, scene, camera;
+
+  var cubeMesh;
+
+  function init() {
+    // 创建一个renderer，抗锯齿
+    renderer = new THREE.WebGLRenderer({antialias: true});
+
+    // 设置背景色为bbb，不透明
+    renderer.setClearColor(0xbbbbbb, 1);
+
+    // 设置画布大小
+    renderer.setSize(900, 600);
+
+    // 渲染场景与dom元素绑定
+    document.getElementById('threePlayer').appendChild(renderer.domElement);
+
+
+    // THREE中的所有对象都附着在scene上
+    scene = new THREE.Scene();
+
+
+    // 创建一个透视镜头
+    camera= new THREE.PerspectiveCamera(45, 900 / 600, 1, 100);
+    camera.position.set(0, 0, 10);
+    camera.lookAt(scene.position);
+    scene.add(camera);
+
+
+    // 创建一个立方体
+    var cubeGeometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+    var cubeTexture = THREE.ImageUtils.loadTexture('/examples/assets/NeHe.jpg');
+    // 为每个面设置材料(MeshBasicMaterial不支持light)
+    var cubeMaterial = new THREE.MeshLambertMaterial({
+      map: cubeTexture,
+      side: THREE.DoubleSide
+    });
+    cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cubeMesh.position.set(0, 0, 2);
+    scene.add(cubeMesh);
+
+    // 环境光，可以认为是无影灯，各个方向都有光
+    var ambientLight = new THREE.AmbientLight(0x101010, 1.0);
+    scene.add(ambientLight);
+
+
+    // 点光源
+    var directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    directionalLight.position.set(0, 0.5, 1);
+    scene.add(directionalLight);
+  }
+
+  function animateScene() {
+    cubeMesh.rotation.y += 0.01;
+    cubeMesh.rotation.x += 0.01;
+    cubeMesh.rotation.z += 0.01;
+  }
+
+  function renderScene() {
+    // 渲染
+    renderer.render(scene, camera);
+    animateScene();
+    requestAnimationFrame(renderScene);
+  }
+
+  init();
+  renderScene();
+  </script>
+    </body>
+</html>
