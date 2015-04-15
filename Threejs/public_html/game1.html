@@ -142,7 +142,7 @@
 				renderer.render(stage);
 			}
                         var startTime = (new Date()).getTime();
-                        timeLast = 0;
+                        var timeLast = 0;
                         function resultFun(){
                          timeLast= ((new Date()).getTime()-startTime)/1000/60
                          alert("耗时"+timeLast+'分钟');
@@ -153,10 +153,10 @@
                                                   function shareFriend() {
                                                       var lineLink = 'http://sexdevil.github.io/Threejs/public_html/game1.html';
                                                       var shareTitle;
-                                                      if(timelast=='0'){
+                                                      if(timeLast=='0'){
                                                           shareTitle =='我没能完成,擦'
                                                       }else{
-                                                          shareTitle =='耗时'+timelast+'分钟'
+                                                          shareTitle =='耗时'+timeLast+'分钟'
                                                       }
                                                   }
                                                   shareFriend();
