@@ -148,24 +148,24 @@
                          alert("耗时"+timeLast+'分钟');
                          shareFriend();
                         }
-                        var linelink='';
-                        
-                                                  function shareFriend() {
-                                                      var lineLink = 'http://sexdevil.github.io/Threejs/public_html/game1.html';
-                                                      var shareTitle;
-                                                      if(timeLast=='0'){
-                                                          shareTitle =='我没能完成,擦'
-                                                      }else{
-                                                          shareTitle =='耗时'+timeLast+'分钟'
-                                                      }
-                                                  }
-                                                  shareFriend();
-            WeixinJSBridge.invoke('sendAppMessage', {
-                "link": lineLink,
-                "title": shareTitle
-            }, function(res) {
-                //_report('send_msg', res.err_msg);  // 这是回调函数，必须注释掉
-            })
+//                        var linelink='';
+//                        
+//                                                  function shareFriend() {
+//                                                      var lineLink = 'http://sexdevil.github.io/Threejs/public_html/game1.html';
+//                                                      var shareTitle;
+//                                                      if(timeLast=='0'){
+//                                                          shareTitle =='我没能完成,擦'
+//                                                      }else{
+//                                                          shareTitle =='耗时'+timeLast+'分钟'
+//                                                      }
+//                                                  }
+//                                                  shareFriend();
+//            WeixinJSBridge.invoke('sendAppMessage', {
+//                "link": lineLink,
+//                "title": shareTitle
+//            }, function(res) {
+//                //_report('send_msg', res.err_msg);  // 这是回调函数，必须注释掉
+//            })
 		</script>
 	</body>
 </html>
