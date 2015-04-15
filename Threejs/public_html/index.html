@@ -16,7 +16,7 @@ and open the template in the editor.
          <div id="threePlayer"></div>
 
   <script>
-  var width = window.innerWidth, height = window.innerHeight;
+  var width = window.innerWidth/2, height = window.innerHeight/2;
   var renderer, scene, camera;
 
   var cubeMesh;
@@ -34,20 +34,19 @@ and open the template in the editor.
     // 渲染场景与dom元素绑定
     document.getElementById('threePlayer').appendChild(renderer.domElement);
 
-
     // THREE中的所有对象都附着在scene上
     scene = new THREE.Scene();
 
 
     // 创建一个透视镜头
-    camera= new THREE.PerspectiveCamera(45, width / height, 1, 100);
+    camera= new THREE.PerspectiveCamera(65, width / height, 1, 100);
     camera.position.set(0, 0, 10);
     camera.lookAt(scene.position);
     scene.add(camera);
 
 
     // 创建一个立方体
-    var cubeGeometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+    var cubeGeometry = new THREE.CubeGeometry(1.5, 1.5, 1.5);
     var cubeTexture = THREE.ImageUtils.loadTexture('/examples/assets/NeHe.jpg');
     // 为每个面设置材料(MeshBasicMaterial不支持light)
     var cubeMaterial = new THREE.MeshLambertMaterial({
@@ -55,16 +54,16 @@ and open the template in the editor.
       side: THREE.DoubleSide
     });
     cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    cubeMesh.position.set(0, 0, 2);
+    cubeMesh.position.set(0, 0, 0);
     scene.add(cubeMesh);
 
     // 环境光，可以认为是无影灯，各个方向都有光
-    var ambientLight = new THREE.AmbientLight(0x101010, 1.0);
+    var ambientLight = new THREE.AmbientLight(0x000000, 1.0);
     scene.add(ambientLight);
 
 
     // 点光源
-    var directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    var directionalLight = new THREE.DirectionalLight(0x000000, 1.0);
     directionalLight.position.set(0, 0.5, 1);
     scene.add(directionalLight);
   }
