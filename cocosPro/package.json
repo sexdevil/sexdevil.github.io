@@ -1,0 +1,16 @@
+
+{
+  "name": "zhiyuantong",
+  "version": "0.1.0",
+  "dependencies": {
+    "grunt":"~0.4.0",
+    "grunt-contrib-clean":"*",
+    "grunt-contrib-uglify":"*",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-cssmin": "*",
+    "grunt-css-import":"*",
+    "grunt-contrib-copy":"*",
+    "grunt-contrib-watch":"0.4.0",
+    "grunt-contrib-cssmin":"~0.10.0"
+  }
+}
