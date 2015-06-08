@@ -40,6 +40,8 @@ var MyScene = cc.Scene.extend({
                               this.addChild(textLayer,1)
                           }
                       });  window.onload = function(){
+      var a = document.getElementById('preload')
+              a.parentNode.removeChild(a)
               cc.game.onStart = function(){
                   //load resources
                       cc.director.runScene(new MyScene());
