@@ -19,12 +19,12 @@ var MyScene = cc.Scene.extend({
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ALL_AT_ONCE,
             onTouchBegan: function(touch, event) {
-               
+               console.log(TextLayer.label.x)
             },
             onTouchMoved: function(touch, event) {
 
             }
-        }, me)
+        }, MyScene)
         
     },
     preventDefault:function(){
@@ -76,6 +76,7 @@ var MyScene = cc.Scene.extend({
               a.parentNode.removeChild(a)
               cc.game.onStart = function(){
                   //load resources
+                      cc.view.setDesignResolutionSize(720,1280,cc.ResolutionPolicy.SHOW_ALL)
                       cc.director.runScene(new MyScene());
               };
               cc.game.run("gameCanvas");
