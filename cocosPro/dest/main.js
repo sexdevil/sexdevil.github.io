@@ -1,4 +1,23 @@
-var TextLayer = cc.Layer.extend({
+
+//绑定事件
+
+cc.eventManager.addListener({
+    event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+    onTouchBegan:function(touch,event){
+        event.preventDefault();
+    },
+    onTouchMoved:function(touch,event){
+        event.preventDefault();
+    }
+})
+
+var MyScene = cc.Scene.extend({
+                          onEnter:function () {
+                              this._super();
+                              var textLayer = new TextLayer();
+                              this.addChild(textLayer,1)
+                          }
+                      });var TextLayer = cc.Layer.extend({
     
     label:null,
     deltaX:1,
@@ -31,15 +50,7 @@ var TextLayer = cc.Layer.extend({
 })
 
 
-
-
-var MyScene = cc.Scene.extend({
-                          onEnter:function () {
-                              this._super();
-                              var textLayer = new TextLayer();
-                              this.addChild(textLayer,1)
-                          }
-                      });  window.onload = function(){
+  window.onload = function(){
       var a = document.getElementById('preload')
               a.parentNode.removeChild(a)
               cc.game.onStart = function(){
