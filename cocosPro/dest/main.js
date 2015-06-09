@@ -1,23 +1,44 @@
 
 //绑定事件
 
-cc.eventManager.addListener({
-    event: cc.EventListener.TOUCH_ALL_AT_ONCE,
-    onTouchBegan:function(touch,event){
-        event.preventDefault();
-    },
-    onTouchMoved:function(touch,event){
-        event.preventDefault();
-    }
-})
+
 
 var MyScene = cc.Scene.extend({
-                          onEnter:function () {
-                              this._super();
-                              var textLayer = new TextLayer();
-                              this.addChild(textLayer,1)
-                          }
-                      });var TextLayer = cc.Layer.extend({
+    ctor: function() {
+         this._super();
+        this.bindEvent();
+        this.preventDefault();
+    },
+    onEnter: function() {
+        this._super();
+        var textLayer = new TextLayer();
+        this.addChild(textLayer, 1)
+    },
+    bindEvent: function() {
+        var me = this;
+        cc.eventManager.addListener({
+            event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+            onTouchBegan: function(touch, event) {
+               
+            },
+            onTouchMoved: function(touch, event) {
+
+            }
+        }, me)
+        
+    },
+    preventDefault:function(){
+        document.addEventListener('touchstart',function(e){
+             e.preventDefault();
+        })
+        document.addEventListener('touchmove',function(e){
+              e.preventDefault();
+        })
+        document.addEventListener('touchend',function(e){
+              e.preventDefault();
+        })
+    }
+});var TextLayer = cc.Layer.extend({
     
     label:null,
     deltaX:1,
