@@ -5,14 +5,40 @@
 <meta name="viewport" content="width=1000,user-scalable=no" />
  <link rel="stylesheet" type="text/css" href="css/common.css">
 	</head>
-	<body></body>
+	<body>
+            <div class="loading">Loading</div>            
 <script src='js/pixi.min.js'></script>
 <script>
 var renderer = PIXI.autoDetectRenderer(1000, 1000,{backgroundColor : 0x1099bb});
 document.body.appendChild(renderer.view);
 
+var loader = PIXI.loader; // pixi exposes a premade instance for you to use.
+//or
+var loader = new PIXI.loaders.Loader(); // you can also create your own if you want
+
+loader.add('bunny',"assets/bunny.png");
+loader.add('textureAllien',"assets/SpriteSheet-Aliens.png");
+loader.once('complete',onAssetsLoaded);
+
+loader.load();
+window.over = false
+function onAssetsLoaded(){
+    
+document.getElementsByClassName('loading')[0].remove();
+
+
+
 // create the root of the scene graph
 var stage = new PIXI.Container();
+
+var gamescene = new PIXI.Sprite();
+gamescene.interactive = true;
+gamescene.width=1000;
+gamescene.height=1000;
+stage.addChild(gamescene);
+//bind event
+gamescene.on('touchstart', onDown);
+gamescene.on('mousedown', onDown);
 
 // create a texture from an image path
 var texture = PIXI.Texture.fromImage('assets/bunny.png');
@@ -28,6 +54,14 @@ bunny.anchor.y = 0.5;
 // move the sprite to the center of the screen
 bunny.position.x = 200;
 bunny.position.y = 150;
+
+bunny.gamedata={
+        angle:0,
+	width:20,
+	height:20,
+	speed:0,
+        speedY:0
+}
 
 stage.addChild(bunny);
 
@@ -72,9 +106,19 @@ function fly(target){
 
     target.position.y+=target.gamedata.speed*Math.sin(target.gamedata.angle);
 
-   if(target.position.x+target.gamedata.width>=map.width || target.position.x-target.gamedata.width<=0 || target.position.y+target.gamedata.height>=map.height || target.position.y-target.gamedata.height<=0){
+   if(target.position.x>=map.width || target.position.x<=0 || target.position.y>=map.height || target.position.y<=0){
      changeWay(target);
    }
+}
+
+function flyBunny(target){
+    target.position.x+=target.gamedata.speed;
+
+    target.position.y+=target.gamedata.speedY;
+    if(target.position.x>=map.width || target.position.x<=0 || target.position.y>=map.height || target.position.y<=0){
+    alert('You dead')
+    window.over = true;
+   } 
 }
 
 function changeWay(target){
@@ -85,12 +129,17 @@ function changeWay(target){
 animate();
 
 function animate() {
+    if(over){
+        return; 
+    }
     requestAnimationFrame(animate);
 
     timer+=0.01;
 
    
     fly(allien)
+    
+    flyBunny(bunny)
     // just for fun, let's rotate mr rabbit a little
     bunny.rotation += 0.1;
 
@@ -99,5 +148,32 @@ function animate() {
     // render the container
     renderer.render(stage);
 }
+
+function onDown(eventData){
+    var x = eventData.data.global.x;
+    var y = eventData.data.global.y;
+    var x0 = bunny.position.x;
+    var y0= bunny.position.y;
+    if(x>x0){
+       bunny.gamedata.speed=3
+    }else{
+       bunny.gamedata.speed=-3 
+    }
+    if(y>y0){
+       bunny.gamedata.speedY = 3
+    }else{
+      bunny.gamedata.speedY = -3
+    }
+   
+   
+
+}
+
+}//onLoaded
+
+
+
+
 </script>
+</body>
 </html>

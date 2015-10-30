@@ -16,3 +16,16 @@ a,div,span{  font-family:"Microsoft YaHei", "Î¢ÈíÑÅºÚ", "SimSun", "ËÎ�
 .smallcontainer{width:1000px;overflow: hidden; }
 .rContent{width:1000px; float: right;}
 h2,h3,h4,h5,h6{font-weight: normal;}
+canvas{display: block;
+margin: 0 auto;}
+.loading{
+    font-size:30px;
+    width:200px;
+    margin: 200px auto;
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -100px;
+    top:300px;
+    color: #fff;
+}
