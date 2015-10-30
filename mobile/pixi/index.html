@@ -20,6 +20,7 @@ var texture = PIXI.Texture.fromImage('assets/bunny.png');
 // create a new Sprite using the texture
 var bunny = new PIXI.Sprite(texture);
 
+
 // center the sprite's anchor point
 bunny.anchor.x = 0.5;
 bunny.anchor.y = 0.5;
@@ -30,13 +31,70 @@ bunny.position.y = 150;
 
 stage.addChild(bunny);
 
+
+var textureAllien = PIXI.Texture.fromImage('assets/SpriteSheet-Aliens.png');
+textureAllien = new PIXI.Texture(textureAllien,new PIXI.Rectangle(0, 0, 165, 165))
+var allien = new PIXI.Sprite(textureAllien);
+allien.anchor.x=0.5;
+allien.anchor.y=0.5;
+allien.position.x=500;
+allien.position.y=500;
+
+allien.gamedata={
+	angle:randomAngle(),
+	width:165,
+	height:165,
+	speed:10
+}
+
+stage.addChild(allien);
+
+var map={
+	width:1000,
+	height:1000
+}
+
+var timer = 0;
+
+var speed=10;
+
+
+function randomAngle(){
+	return Math.random()*360
+}
+
+
 // start animating
+
+
+function fly(target){
+	target.position.x+=target.gamedata.speed;
+
+    target.position.y+=target.gamedata.speed*Math.sin(target.gamedata.angle);
+
+   if(target.position.x+target.gamedata.width>=map.width || target.position.x-target.gamedata.width<=0 || target.position.y+target.gamedata.height>=map.height || target.position.y-target.gamedata.height<=0){
+     changeWay(target);
+   }
+}
+
+function changeWay(target){
+    target.gamedata.angle+=180
+    target.gamedata.speed = target.gamedata.speed*(-1)
+}
+
 animate();
+
 function animate() {
     requestAnimationFrame(animate);
 
+    timer+=0.01;
+
+   
+    fly(allien)
     // just for fun, let's rotate mr rabbit a little
     bunny.rotation += 0.1;
+
+    
 
     // render the container
     renderer.render(stage);
