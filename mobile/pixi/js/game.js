@@ -58,7 +58,7 @@ bunny.gamedata={
 stage.addChild(bunny);
 
 
-addEnemy(stage);
+addEnemy(stage,bunny);
 
 var map={
 	width:1000,
@@ -197,14 +197,27 @@ function cancle(){
   
 }
 
-function addEnemy(stage){
+function addEnemy(stage,bunny){
 var textureAllien = PIXI.Texture.fromImage('assets/SpriteSheet-Aliens.png');
 textureAllien = new PIXI.Texture(textureAllien,new PIXI.Rectangle(0, 0, 165, 165))
 var allien = new PIXI.Sprite(textureAllien);
 allien.anchor.x=0.5;
 allien.anchor.y=0.5;
+
+
+
 allien.position.x=randomNum()*1000;
 allien.position.y=randomNum()*gamescene.height;
+
+while(1){
+ if(Math.sqrt(Math.sqaure(bunny.position.x-allien.position.x)+Math.sqaure(bunny.position.y-allien.position.y))<=80){
+  allien.position.x=randomNum()*1000;
+allien.position.y=randomNum()*gamescene.height;  
+}else{
+    break;
+}   
+}
+
 
 allien.gamedata={
 	angle:randomAngle(),
@@ -219,6 +232,6 @@ window.enemyList.push(allien)
 
 function enemyNumber(timer,stage){
     if(enemyList.length<timer/10){
-        addEnemy(stage)
+        addEnemy(stage,bunny)
     }
 }
