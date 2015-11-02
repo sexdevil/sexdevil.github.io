@@ -5,13 +5,13 @@ ul, ol, li { list-style:none; }
 select, input { vertical-align:middle; }
 select, input, textarea { font-size:12px; margin:0; }
 table { border-collapse:collapse; }
-body { background:#fff; color:#333; padding:0; font:12px/20px "Microsoft Yahei", "Î¢ÈíÑÅºÚ","ËÎÌå","simsun"; }
+body { background:#fff; color:#333; padding:0; font:12px/20px "Microsoft Yahei", "ÃŽÂ¢ÃˆÃ­Ã‘Ã…ÂºÃš","Ã‹ÃŽÃŒÃ¥","simsun"; }
 .clearfix:after { content:"."; display:block; height:0; visibility:hidden; clear:both; }
 .clearfix { zoom:1; }
 .clearit { clear:both; height:10px; font-size:0; overflow:hidden;zoom:1; }
 a { color:#333; text-decoration:none;  }
 .wrap { width:1000px; margin:0 auto; }
-a,div,span{  font-family:"Microsoft YaHei", "Î¢ÈíÑÅºÚ", "SimSun", "ËÎÌå";}
+a,div,span{  font-family:"Microsoft YaHei", "ÃŽÂ¢ÃˆÃ­Ã‘Ã…ÂºÃš", "SimSun", "Ã‹ÃŽÃŒÃ¥";}
 .container{width:1240px; margin: 0 auto; }
 .smallcontainer{width:1000px;overflow: hidden; }
 .rContent{width:1000px; float: right;}
@@ -28,4 +28,27 @@ margin: 0 auto;}
     margin-left: -100px;
     top:300px;
     color: #fff;
+}
+.overlay{
+    position: fixed;
+    left:0;
+    top:0;
+    z-index: 999;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.overlay .msgbox{
+    position: absolute;
+    width: 600px;
+    left:50%;
+    margin-left: -300px;
+    top:400px;
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+}
+.overlay .msgbox span{
+    margin-right: 40px;
 }
