@@ -174,7 +174,7 @@ function randomNum(){
 
 function retry(){
     document.getElementById('popup').style.display='none' 
-    
+    timer=0;
     for(var i=0;i<enemyList.length;i++){
        stage.removeChild(enemyList[i]); 
     }
