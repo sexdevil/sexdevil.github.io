@@ -65,7 +65,7 @@ var map={
 	height:document.documentElement.clientHeight
 }
 
-var timer = 0;
+window.timer = 0;
 
 var speed=10;
 
@@ -131,7 +131,7 @@ function animate() {
 
     timer+=0.01;
 
-    enemyNumber(timer,stage);//定时增加怪物数量
+    enemyNumber(stage);//定时增加怪物数量
    
     fly(window.enemyList)
     
@@ -230,7 +230,7 @@ stage.addChild(allien);
 window.enemyList.push(allien)
 }
 
-function enemyNumber(timer,stage){
+function enemyNumber(stage){
     if(enemyList.length<timer/10){
         addEnemy(stage,bunny)
     }
