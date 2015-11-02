@@ -21,7 +21,7 @@ document.getElementsByClassName('loading')[0].remove();
 window.enemyList = [];
 
 // create the root of the scene graph
-var stage = new PIXI.Container();
+window.stage = new PIXI.Container();
 
 window.gamescene = new PIXI.Sprite();
 gamescene.interactive = true;
@@ -174,15 +174,15 @@ function randomNum(){
 
 function retry(){
     document.getElementById('popup').style.display='none' 
-    allien.position.x=500;
-    allien.position.y=500;
     
-    allien.gamedata={
-	angle:randomAngle(),
-	width:165,
-	height:165,
-	speed:10
-}
+    for(var i=0;i<enemyList.length;i++){
+       stage.removeChild(enemyList[i]); 
+    }
+    
+    window.enemyList=[];
+    
+    addEnemy(stage,bunny)
+    
     bunny.gamedata.speed=0;
     bunny.gamedata.speedY=0;
     bunny.position.x = 200;
@@ -212,7 +212,7 @@ allien.position.y=randomNum()*gamescene.height;
 while(1){
  if(Math.sqrt(Math.sqaure(bunny.position.x-allien.position.x)+Math.sqaure(bunny.position.y-allien.position.y))<=80){
   allien.position.x=randomNum()*1000;
-allien.position.y=randomNum()*gamescene.height;  
+  allien.position.y=randomNum()*gamescene.height;  
 }else{
     break;
 }   
