@@ -1,4 +1,4 @@
- (function() {
+   (function() {
  if (!window.requestAnimationFrame) {
         window.requestAnimationFrame = function(callback, element) {
             var currTime = new Date().getTime();
@@ -22,7 +22,7 @@ var mainAnimate=0;
 Math.sqaure = function(x){
   return x*x   
 }
-var speed = 4;
+var speed = 6;
 var range = 0;//前进距离
 var renderer = PIXI.autoDetectRenderer(document.documentElement.clientWidth, document.documentElement.clientHeight,{backgroundColor : 0x1099bb});
 document.body.appendChild(renderer.view);
@@ -105,7 +105,7 @@ function addBlock(){
 }
 
 function collision(g,spineBoy){
-   if(Math.sqrt(Math.sqaure(g.x-spineBoy.x)+Math.sqaure(g.y-spineBoy.y+spineBoy.height/2))<=100){
+   if(Math.sqrt(Math.sqaure(g.x-spineBoy.x)+Math.sqaure(g.y-spineBoy.y+spineBoy.height/2))<=180){
       
        window.cancelAnimationFrame(mainAnimate);
         alert('You dead!')
