@@ -1,7 +1,38 @@
-var renderer = PIXI.autoDetectRenderer(1000, document.documentElement.clientHeight,{backgroundColor : 0x1099bb});
+ (function() {
+ if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+            var id = window.setTimeout(function() {
+                callback(currTime + timeToCall);
+            }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+    }
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+    }
+}());
+
+var mainAnimate=0;
+
+Math.sqaure = function(x){
+  return x*x   
+}
+var speed = 4;
+var range = 0;//前进距离
+var renderer = PIXI.autoDetectRenderer(document.documentElement.clientWidth, document.documentElement.clientHeight,{backgroundColor : 0x1099bb});
 document.body.appendChild(renderer.view);
 var stage= new PIXI.Container();
 
+var basicText = new PIXI.Text('你走了0米');
+basicText.x = 30;
+basicText.y = 90;
+
+stage.addChild(basicText);
 // load spine data
 PIXI.loader
     .add('spineboy', 'assets/spineboy.json')
@@ -15,14 +46,16 @@ stage.interactive = true;
 gamescene.interactive = true;
 gamescene.width=renderer.width;
 gamescene.height=renderer.height;
+var graphicsList = [];
+var timer = 0;
 
 function onAssetsLoaded(loader, res)
 {
    
   spineBoy = new PIXI.spine.Spine(res.spineboy.spineData);
     // set the position
-    spineBoy.position.x = renderer.width / 4;
-    spineBoy.position.y = renderer.height/1.5;
+    spineBoy.x = renderer.width / 4;
+    spineBoy.y = renderer.height/2;
 
     spineBoy.scale.set(1);
     spineBoy.gamestate='walk';
@@ -52,10 +85,34 @@ function onAssetsLoaded(loader, res)
     });
     
 
-    requestAnimationFrame(animate);
+    mainAnimate=requestAnimationFrame(animate);
 }
 
+function addBlock(){
+    var graphics= new PIXI.Graphics()
+    graphics.lineStyle(2, 0x0000FF, 1);
+    graphics.beginFill(0xFF700B, 1);
+    graphics.drawRect(-60, -60, 120, 120);
+    graphics.endFill();
+    stage.addChild(graphics);
+    graphics.position.x=renderer.width;
+    graphics.position.y=renderer.height/2+(Math.random())*(renderer.height/2)+(Math.random())*(-renderer.height/2);
+    graphicsList.push(graphics);
+    if(graphicsList.length>10){
+        stage.removeChild(graphicsList[0])
+        graphicsList.splice(0,1)
+    }
+}
 
+function collision(g,spineBoy){
+   if(Math.sqrt(Math.sqaure(g.x-spineBoy.x)+Math.sqaure(g.y-spineBoy.y+spineBoy.height/2))<=100){
+      
+       window.cancelAnimationFrame(mainAnimate);
+        alert('You dead!')
+       return false
+   }
+   return true
+}
 
 function animate()
 {
@@ -69,6 +126,27 @@ function animate()
            spineBoy.state.addAnimationByName(0, 'walk', true, 0);
            spineBoy.gamestate='walk'
        }
-    requestAnimationFrame(animate);
+    for(var i=0;i<graphicsList.length;i++){
+        graphicsList[i].position.x-=speed;
+        if(!collision(graphicsList[i],spineBoy)){
+            return
+        } 
+    }
+    timer++;
+    if(timer>100){
+        timer=0;
+        addBlock();
+      
+    }
+     range+=speed;
+    
+          stage.removeChild(basicText);
+       basicText = new PIXI.Text('你走了'+range/1000+'米');
+      basicText.x = 30;
+      basicText.y = 90;
+      stage.addChild(basicText)
+     
+
+    mainAnimate = requestAnimationFrame(animate);
     renderer.render(stage);
 }
