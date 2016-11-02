@@ -1,0 +1,67 @@
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>【美团外卖】外卖_网上订餐_超市_水果_蔬菜_药品</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <style>.photoList li{
+        float:left;
+        width: 120px;
+        height: 120px;
+        overflow: hidden;
+    }
+    .photoList li img{
+        width: 100%;
+    }
+    </style>
+</head>
+<body>
+
+<ul class="photoList clearfix">
+    <li><img order="0" src="http://p0.meituan.net/120.0.60/wmcomment/d76edb1bee3617f43de5b6221575dd19102338.jpg" high-level-src="http://p0.meituan.net/720.0.60/wmcomment/d76edb1bee3617f43de5b6221575dd19102338.jpg"></li>
+    <li><img order="1" src="http://p0.meituan.net/120.0.60/wmcomment/6ffc0e8cb351428d582369c062a0c3a1162600.jpg" high-level-src="http://p0.meituan.net/720.0.60/wmcomment/6ffc0e8cb351428d582369c062a0c3a1162600.jpg"></li>
+</ul>
+单图
+<ul class="photoList clearfix">
+    <li><img order="0" src="http://p0.meituan.net/120.0.60/wmcomment/d76edb1bee3617f43de5b6221575dd19102338.jpg" high-level-src="http://p0.meituan.net/720.0.60/wmcomment/d76edb1bee3617f43de5b6221575dd19102338.jpg"></li>
+</ul>
+多图
+<ul class="photoList clearfix">
+    <li><img order="0" src="http://p0.meituan.net/150.0.100/wmcomment/946f132a63a56901be0318d173ca131894221.jpg" high-level-src="http://p0.meituan.net/wmcomment/946f132a63a56901be0318d173ca131894221.jpg"></li>
+    <li><img order="1" src="http://p0.meituan.net/150.0.100/wmcomment/e9d176504ecad37b19eead05ef7f5a1c74954.jpg" high-level-src="http://p0.meituan.net/wmcomment/e9d176504ecad37b19eead05ef7f5a1c74954.jpg"></li>
+    <li><img order="2" src="http://p0.meituan.net/150.0.100/wmcomment/3ba397d27e2b1799d6b994742e52144273483.jpg" high-level-src="http://p0.meituan.net/wmcomment/3ba397d27e2b1799d6b994742e52144273483.jpg"></li>
+    <li><img order="3" src="http://p0.meituan.net/150.0.100/wmcomment/a06a20b4c867750311efce6b8d721db484028.jpg" high-level-src="http://p0.meituan.net/wmcomment/a06a20b4c867750311efce6b8d721db484028.jpg"></li>
+</ul>
+<link href="/static/css/global.css" rel="stylesheet"/>
+<script src="/static/js/zepto.js"></script>
+<script src="/static/js/webpack_photoViewer.js"></script>
+<script>
+    $('.photoList').on('touchend',function(e){
+        var imgList = [];
+        var photoViewer = webpack_photoViewer();
+        $(this).find('img').each(function(){
+            imgList.push({
+                highLevel:$(this).attr('high-level-src'),
+                lowLevel:$(this).attr('src')
+            })
+        })
+        var order = $(e.target).attr('order') || 0;
+        photoViewer.init(
+                {
+                    order:order,   //当前选中第几张照片 从零开算
+                    imgList:imgList, //轮播照片列表
+                    disableAutoPlay:true, //是否仅用自动播放动画,默认为true
+                }
+        ).show();
+        e.preventDefault();//阻止触发click事件 会关闭相册
+    })
+</script>
+</body>

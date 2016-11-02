@@ -1,0 +1,22 @@
+<div id="photo-viewer" class="photo-viewer-back">
+    <div class="loading-card">
+        <div class="line-spin-fade-loader-outter">
+            <div class="line-spin-fade-loader">
+                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </div>
+        </div>
+    </div>
+    <section class="photo-viewer-content">
+        {{? !!it.preloadImage}}<img src="{{=it.preloadImage.lowLevel}}" class="preload-img">{{?}}
+        <div id="photo-viewer-inner" class="photo-viewer-inner" data-action="destoryPhoto">
+            {{~it.imgList :value:index }}
+            <a class="photo-viewer-item" href="javascript:;" data-action="destoryPhoto" style="width:{{=it.windowWidth}}px;"> <img data-action="destoryPhoto" data-hook='photoImgage' src="{{=value.highLevel}}" style="opacity: 1;"> </a>
+            {{~}}
+        </div>
+    </section>
+    <div id="bnrs-indic-wrap" style="display: none" class="bnrs-indic-wrap">
+        {{~it.imgList :value:index }}
+        <i class="j-indic{{=(index+1)}} i-circle bnrs-indic {{? index==0}}indic-focus{{?}}"></i>
+        {{~}}
+    </div>
+</div>
